@@ -1,3 +1,4 @@
+import gnupg
 def create_gpg():
     try:
         print("Initializing GPG...")

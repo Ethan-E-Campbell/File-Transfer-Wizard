@@ -18,9 +18,6 @@ def main_menu():
         except ValueError:
             print("Invalid input. Please enter a number between 1 and 5.")
 
-def encrypt_file(file_path):
-    pass
-
 def decrypt_file(file_path):
     pass
 
