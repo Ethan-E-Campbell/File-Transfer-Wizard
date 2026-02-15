@@ -1,4 +1,5 @@
-import gnupg
+#import gnupg
+from encrypt import encrypt_file
 
 def main_menu():
     print("Welcome to file tranfer wizard.\nThis wizard is meant to encrypt files using PGP encryption.\nPlease select an option!")
@@ -23,14 +24,14 @@ def encrypt_file(file_path):
 def decrypt_file(file_path):
     pass
 
-def create_gpg():
-    try:
-        print("Initializing GPG...")
-        gpg = gnupg.GPG()
-        return gpg
-    except Exception as e:
-        print("An error occurred while initializing GPG: ", e)
-        exit(1)
+#def create_gpg():
+#    try:
+#        print("Initializing GPG...")
+#        gpg = gnupg.GPG()
+#        return gpg
+#    except Exception as e:
+#        print("An error occurred while initializing GPG: ", e)
+#        exit(1)
 
 if __name__ == "__main__":
     user_selection = None
@@ -38,8 +39,9 @@ if __name__ == "__main__":
     match user_selection:
         case 1: 
             print("You selected option 1, Encrypt File")
-            pgp = create_gpg()
+            #pgp = create_gpg()
             file_obj = input("please enter the full file path of file to encrypt.")
+            encrypt_file(file_obj)
         case 2: print("sweet")
 
 
