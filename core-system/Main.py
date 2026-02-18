@@ -28,7 +28,8 @@ if __name__ == "__main__":
         case 1: 
             print("You selected option 1, Encrypt File")
             file_obj = input("please enter the full file path of file to encrypt: ")
-            encrypt_file(file_obj)
+            pgp_public_key = input("please enter the full file path of the public key you want to encrypt with: ")
+            encrypt_file(file_obj, pgp_public_key)
         case 2: 
             print("You selected option 2, Decrypt File")
             file_obj = input("please enter the full file path of file to decrypt.")
@@ -41,7 +42,7 @@ if __name__ == "__main__":
             name_comment = input("What Name-Comment would you like to use for your PGP key pair? ")
             name_email = input("What Name-Email would you like to use for your PGP key pair? ")
             pgp_fingerprint = create_pgp_key_pair(key_type, key_length, name_real, name_comment, name_email)
-            print("PGP Key Pair created successfully! with this fingerprint: ", pgp_fingerprint)
+            print("PGP Key Pair created successfully, with this fingerprint: ", pgp_fingerprint)
         case 4: 
             print("You selected option 4, Create SSH Key Pair")
             create_ssh_key_pair()
