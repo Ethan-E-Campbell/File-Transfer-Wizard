@@ -1,5 +1,6 @@
 import gnupg
 import uuid
+import os
 def create_uuid():
     return str(uuid.uuid4())
 def create_gpg():
@@ -16,13 +17,16 @@ def create_pgp_key_pair(key_type, key_length, name_email):
     print ("Creating PGP key pair...")
     gpg = create_gpg()
     password = create_uuid()
-    input_data= gpg.gen_key_input(key_type="RSA", key_length=1024, passphrase=password)
-    #input_data = gpg.gen_key_input(key_type=key_type, key_length=key_length, name_real=name_real, name_comment=name_comment, name_email=name_email)
+    input_data= gpg.gen_key_input(key_type=key_type, key_length=key_length, passphrase=password)
     key = gpg.gen_key(input_data)
     print("Generated key: ", key)
     key_id = key.fingerprint
-    ascii_armored_public_keys = gpg.export_keys(key_id, passphrase=password, output= 'C:\\Users\\Ethan\\Downloads\\public_key.asc') # same as gpg.export_keys(keyids, False)
-    ascii_armored_private_keys = gpg.export_keys(key_id, True, passphrase=password, output= 'C:\\Users\\Ethan\\Downloads\\private_key.asc') # True => private keys
+    KEYS_DIR = os.path.join(os.path.dirname(__file__), "..", "keys") 
+    KEYS_DIR = os.path.abspath(KEYS_DIR)
+    public_key_path = os.path.join(KEYS_DIR, "public_key.asc") 
+    private_key_path = os.path.join(KEYS_DIR, "private_key.asc")
+    ascii_armored_public_keys = gpg.export_keys(key_id, passphrase=password, output=public_key_path) # same as gpg.export_keys(keyids, False)
+    ascii_armored_private_keys = gpg.export_keys(key_id, True, passphrase=password, output=private_key_path) # True => private keys
     print("Password: ", password)
 
     return key_id
