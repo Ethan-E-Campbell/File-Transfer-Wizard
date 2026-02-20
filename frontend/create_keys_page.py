@@ -5,18 +5,14 @@ from backend.create_keys import create_ssh_key_pair as csshkp
 
 
 st.write("welcome to the key creation page.")
-pgp_or_ssh = st.text_input("Are you creating a PGP or SSH key pair?")
+pgp_or_ssh = st.selectbox("Are you creating a PGP or SSH key pair?", ["PGP", "SSH"])
 
-
-
-
-
-pgp_public_key = st.text_input("please enter the full file path of the public key you want to encrypt with: ")
-#if st.button("Submit", key="file_encrypt_submit"):
-#    result = ef(file_path,pgp_public_key)
-#    #st.write(e)
-#    st.write(result)
-
-#if st.button("Encrypt a file", key="file_encrypt_show") and enable_inputs == False:
-#    enable_inputs = True
-#    show_encrypt_inputs()
+if pgp_or_ssh == "PGP":
+    #input_data = gpg.gen_key_input(key_type=key_type, key_length=key_length, name_real=name_real, name_comment=name_comment, name_email=name_email)
+    st.write("You have selected to create a PGP key pair.")
+    key_type = st.selectbox("What Key Type would you like to use for your PGP key pair?", ["RSA", "DSA"], index = 1)
+    key_length = st.selectbox("What Key Length would you like to use for your PGP key pair?", [1024, 2048, 4096], index = 1)
+    name_email = st.text_input("What Name-Email would you like to use for your PGP key pair?")
+    if st.button("Submit", key="pgp_key_submit"):
+        result = cpgpkp(key_type, key_length, name_email)
+        st.write(result)

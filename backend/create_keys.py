@@ -12,7 +12,7 @@ def create_gpg():
         exit(1)
 
 
-def create_pgp_key_pair(key_type, key_length, name_real, name_comment, name_email):
+def create_pgp_key_pair(key_type, key_length, name_email):
     print ("Creating PGP key pair...")
     gpg = create_gpg()
     password = create_uuid()
