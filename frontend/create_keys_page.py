@@ -15,5 +15,8 @@ if pgp_or_ssh == "PGP":
     name_email = st.text_input("What Name-Email would you like to use for your PGP key pair?")
     key_file_name = st.text_input("What would you like to name your key files? (without extension)")
     if st.button("Submit", key="pgp_key_submit"):
-        result = cpgpkp(key_type, key_length, name_email, key_file_name)
-        st.write(result)
+        if not key_file_name.strip(): 
+            st.error("Please enter a name for your key files before submitting.")
+        else: 
+            result = cpgpkp(key_type, key_length, name_email, key_file_name)
+            st.write(result)
