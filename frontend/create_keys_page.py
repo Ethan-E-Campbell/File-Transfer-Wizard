@@ -13,6 +13,7 @@ if pgp_or_ssh == "PGP":
     key_type = st.selectbox("What Key Type would you like to use for your PGP key pair?", ["RSA", "DSA"], index = 1)
     key_length = st.selectbox("What Key Length would you like to use for your PGP key pair?", [1024, 2048, 4096], index = 1)
     name_email = st.text_input("What Name-Email would you like to use for your PGP key pair?")
+    key_file_name = st.text_input("What would you like to name your key files? (without extension)")
     if st.button("Submit", key="pgp_key_submit"):
-        result = cpgpkp(key_type, key_length, name_email)
+        result = cpgpkp(key_type, key_length, name_email, key_file_name)
         st.write(result)
