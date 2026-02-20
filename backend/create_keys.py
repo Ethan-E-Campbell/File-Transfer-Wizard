@@ -23,8 +23,6 @@ def create_pgp_key_pair(key_type, key_length, name_email):
     key_id = key.fingerprint
     ascii_armored_public_keys = gpg.export_keys(key_id, passphrase=password, output= 'C:\\Users\\Ethan\\Downloads\\public_key.asc') # same as gpg.export_keys(keyids, False)
     ascii_armored_private_keys = gpg.export_keys(key_id, True, passphrase=password, output= 'C:\\Users\\Ethan\\Downloads\\private_key.asc') # True => private keys
-    print("Public Key: ", ascii_armored_public_keys)
-    print("Private Key: ", ascii_armored_private_keys)
     print("Password: ", password)
 
     return key_id
