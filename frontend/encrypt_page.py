@@ -8,9 +8,10 @@ pgp_public_key_file = ""
 st.title("Welcome to the encrypt page.")
 st.write("Please answer these questions to encrypt your file.")
 st.write(lf())
+key_type = st.selectbox("What Key Type would you like to use for your PGP key pair?", lf(), index = 1)
+
 file_path = st.text_input("Enter the path to the file you want to encrypt:")
 pgp_public_key_file = st.file_uploader("please upload the public key you want to encrypt with:") 
-
 if pgp_public_key_file: 
     st.write("You selected:", pgp_public_key_file.name)
     pgp_public_key_data = pgp_public_key_file.read()
