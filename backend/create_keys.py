@@ -6,7 +6,7 @@ def create_uuid():
 def create_gpg():
     try:
         print("Initializing GPG...")
-        gpg = gnupg.GPG(verbose = True, options = ['--verbose', '--batch', '--yes', '--pinentry-mode', 'loopback'])
+        gpg = gnupg.GPG(verbose = False, options = ['--verbose', '--batch', '--yes', '--pinentry-mode', 'loopback'])
         return gpg
     except Exception as e:
         print("An error occurred while initializing GPG: ", e)
@@ -29,7 +29,7 @@ def create_pgp_key_pair(key_type, key_length, name_email, key_file_name):
     ascii_armored_private_keys = gpg.export_keys(key_id, True, passphrase=password, output=private_key_path) # True => private keys
     print("Password: ", password)
 
-    return key_id
+    return key_id, password
 
 def create_ssh_key_pair(file_path):
     print ("file encryption will happen here")

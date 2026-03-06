@@ -25,3 +25,9 @@ def encrypt_file(file_path, public_key_path):
         print("An error occurred during file encryption: ", e)
         return e
     return result.status
+
+def list_files():
+    KEYS_DIR = os.path.join(os.path.dirname(__file__), "..", "keys") 
+    KEYS_DIR = os.path.abspath(KEYS_DIR)
+    files = os.listdir(KEYS_DIR)
+    return files

@@ -18,5 +18,6 @@ if pgp_or_ssh == "PGP":
         if not key_file_name.strip(): 
             st.error("Please enter a name for your key files before submitting.")
         else: 
-            result = cpgpkp(key_type, key_length, name_email, key_file_name)
-            st.write(result)
+            fingerprint, password = cpgpkp(key_type, key_length, name_email, key_file_name)
+            st.write("Fingerprint: ", fingerprint)
+            st.write("Password: ", password)
