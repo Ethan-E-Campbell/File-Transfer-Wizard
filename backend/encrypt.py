@@ -3,7 +3,7 @@ import os
 def create_gpg():
     try:
         print("Initializing GPG...")
-        gpg = gnupg.GPG(verbose = True, options = ['--verbose', '--batch', '--yes', '--pinentry-mode', 'loopback'])
+        gpg = gnupg.GPG(verbose = False, options = ['--verbose', '--batch', '--yes', '--pinentry-mode', 'loopback'])
         return gpg
     except Exception as e:
         print("An error occurred while initializing GPG: ", e)
@@ -31,3 +31,8 @@ def list_files():
     KEYS_DIR = os.path.abspath(KEYS_DIR)
     files = os.listdir(KEYS_DIR)
     return files
+
+def list_imported_keys():
+    gpg = create_gpg()
+    keys = gpg.list_keys() 
+    return keys
