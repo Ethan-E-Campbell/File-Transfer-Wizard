@@ -19,6 +19,8 @@ for key in imported_keys:
     #st.write(key_id, user)
     key_options.append(f"{user} ({key_id})")
 key_type = st.selectbox("What Key Type would you like to use for your PGP key pair?", key_options)
+key_type = st.selectbox("What Key Type would you like to use for your PGP key pair?", lf(), index = 1)
+
 file_path = st.text_input("Enter the path to the file you want to encrypt:")
 pgp_public_key_file = st.file_uploader("please upload the public key you want to encrypt with:") 
 if pgp_public_key_file: 
