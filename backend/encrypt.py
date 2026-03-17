@@ -26,11 +26,17 @@ def encrypt_file(file_path, public_key_path):
         return e
     return result.status
 
-def list_files():
-    KEYS_DIR = os.path.join(os.path.dirname(__file__), "..", "keys") 
-    KEYS_DIR = os.path.abspath(KEYS_DIR)
-    files = os.listdir(KEYS_DIR)
-    return files
+#@st.cache_data
+def key_options_default():
+    imported_keys = list_imported_keys()
+    key_options = []
+    if key_options == []:
+        for key in imported_keys:
+            key_id = key['keyid']
+            user = key['uids'][0]
+            #st.write(key_id, user)
+            key_options.append(f"{user} ({key_id})")
+    return key_options
 
 def list_imported_keys():
     gpg = create_gpg()
