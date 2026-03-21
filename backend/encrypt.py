@@ -26,7 +26,6 @@ def encrypt_file(file_path, public_key_path):
         return e
     return result.status
 
-#@st.cache_data
 def key_options_default():
     imported_keys = list_imported_keys()
     key_options = []
