@@ -17,7 +17,7 @@ def create_pgp_key_pair(key_type, key_length, name_email, key_file_name):
     print ("Creating PGP key pair...")
     gpg = create_gpg()
     password = create_uuid()
-    input_data= gpg.gen_key_input(key_type=key_type, key_length=key_length, passphrase=password)
+    input_data= gpg.gen_key_input(key_type=key_type, key_length=key_length, passphrase=password, name_email=name_email)
     key = gpg.gen_key(input_data)
     print("Generated key: ", key)
     key_id = key.fingerprint
