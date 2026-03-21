@@ -1,12 +1,12 @@
 import streamlit as st
 from backend.encrypt import encrypt_file as ef
-from backend.encrypt import key_options_default as key_options_default
+from backend.encrypt import key_options_default as kod
 file_path = ""
 pgp_public_key_file = ""
 
 @st.cache_data
 def list_keys_helper():
-    return key_options_default()
+    return kod()
 
 def title():
     st.title("Welcome to the encrypt page.")

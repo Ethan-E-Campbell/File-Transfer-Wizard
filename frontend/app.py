@@ -6,6 +6,7 @@ decrypt_page = st.Page("decrypt_page.py", title="Decrypt a file", icon="🔓")
 send_page = st.Page("send_page.py", title="Send file", icon="📤")
 create_keys_page = st.Page("create_keys_page.py", title="Create PGP or SSH key pair", icon="🗝️")
 schedule_page = st.Page("schedule_page.py", title="Schedule a transfer", icon="📅")
+import_keys = st.Page("import_keys.py", title="Import PGP keys", icon="📥")
 
 pg = st.navigation([
     home,
@@ -13,7 +14,8 @@ pg = st.navigation([
     encrypt_page,
     decrypt_page,
     send_page,
-    schedule_page
+    schedule_page,
+    import_keys
 ])
 
 pg.run()
