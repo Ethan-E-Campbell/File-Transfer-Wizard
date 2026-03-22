@@ -13,23 +13,15 @@ def create_gpg():
         exit(1)
 
 
-def create_pgp_key_pair(key_type, key_length, name_email, key_file_name):
+def create_pgp_key_pair(key_type, key_length, name_email):
     print ("Creating PGP key pair...")
     gpg = create_gpg()
     password = create_uuid()
     input_data= gpg.gen_key_input(key_type=key_type, key_length=key_length, passphrase=password, name_email=name_email)
     key = gpg.gen_key(input_data)
-    print("Generated key: ", key)
-    key_id = key.fingerprint
-    #KEYS_DIR = os.path.join(os.path.dirname(__file__), "..", "keys") 
-    #KEYS_DIR = os.path.abspath(KEYS_DIR)
-    #public_key_path = os.path.join(KEYS_DIR, (key_file_name + "_public_key.asc")) 
-    #private_key_path = os.path.join(KEYS_DIR, (key_file_name + "_private_key.asc"))
-    #ascii_armored_public_keys = gpg.export_keys(key_id, passphrase=password, output=public_key_path) # same as gpg.export_keys(keyids, False)
-    #ascii_armored_private_keys = gpg.export_keys(key_id, True, passphrase=password, output=private_key_path) # True => private keys
-    print("Password: ", password)
-
-    return key_id, password
+    #print("Generated key: ", key)
+    #print("Password: ", password)
+    return key.fingerprint, password
 
 def create_ssh_key_pair(file_path):
     print ("file encryption will happen here")
