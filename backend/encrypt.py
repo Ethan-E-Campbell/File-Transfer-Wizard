@@ -31,10 +31,9 @@ def key_options_default():
     key_options = []
     if key_options == []:
         for key in imported_keys:
-            print("Key: ", key)
+            #print("Key: ", key)
             key_id = key['keyid']
             user = key['uids'][0]
-            #st.write(key_id, user)
             key_options.append(f"{user} ({key_id})")
     return key_options
 
