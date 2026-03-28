@@ -22,14 +22,15 @@ def main():
         file_path = st.text_input("Please enter the file path of the file you would like to encrypt.") 
     elif upload_or_path == "Upload a file":
         uploaded_file = st.file_uploader("Choose a file to upload")
+            #once submit is pressed, try to encrypt file.
+        #print("uploaded file: ", uploaded_file)
+        bytes_data = uploaded_file.getvalue()
+        file_name = uploaded_file.name
+        st.write(bytes_data)
     else:
         st.error("Please select a valid option for file input.")
-    #once submit is pressed, try to encrypt file.
-    print("uploaded file: ", uploaded_file)
-    bytes_data = uploaded_file.getvalue()
-    st.write(bytes_data)
     if st.button("Submit", key="file_encrypt_submit"):
-        result = encrypt_file(key_id, file_path if upload_or_path == "Enter a file path" else bytes_data)
+        result = encrypt_file(key_id, file_path if upload_or_path == "Enter a file path" else bytes_data, file_name)
         st.write(result)
 
     footer = st.container() 

@@ -10,7 +10,7 @@ def create_gpg():
         exit(1)
 
 
-def encrypt_file(key_id, file):
+def encrypt_file(key_id, file_byte_data, fil_name):
     try:
         print ("Starting file encryption process....")
         #print("public Key ", public_key_path)
@@ -20,8 +20,8 @@ def encrypt_file(key_id, file):
         #print("Import Result: ", import_result.fingerprints)
         #if not import_result.fingerprints: 
         #    raise ValueError("No valid public keys were imported")
-        output = "C:\\Users\\Ethan\\Downloads\\output.gpg"
-        result = gpg.encrypt(file, recipients=key_id,  output=output)
+        output = "C:\\Users\\Ethan\\Downloads\\" + file_name + ".gpg"
+        result = gpg.encrypt(file_byte_data, recipients=key_id,  output=output)
     except Exception as e:
         print("An error occurred during file encryption: ", e)
         return e
