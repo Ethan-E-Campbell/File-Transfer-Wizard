@@ -41,7 +41,7 @@ def key_options_default():
     key_options = []
     if key_options == []:
         for key in keys:
-            key_id = key['keyid']
+            key_id = key['fingerprint']
             user = key['uids'][0]
             key_options.append(f"{user} ({key_id})")
     return key_options

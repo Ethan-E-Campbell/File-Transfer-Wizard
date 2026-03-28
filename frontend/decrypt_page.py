@@ -7,7 +7,7 @@ Description: Frontend page for decrypting PGP encrypted files.
 
 import streamlit as st
 from backend.decrypt import decrypt_file as decrypt_file
-from backend.encrypt import key_options_default as key_options
+from backend.decrypt import key_options_default as key_options
 
 @st.cache_data
 def list_keys_helper():
