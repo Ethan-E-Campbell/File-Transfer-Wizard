@@ -13,11 +13,12 @@ def main():
     st.title("Welcome to the encrypt page.")
     st.write("Please answer these questions to encrypt your file.")
     #ask what key to use
-    key_type = st.selectbox("What key would you like to use for your PGP key pair?", list_keys_helper())
+    selection = st.selectbox("What key would you like to use for your PGP key pair?", list_keys_helper())
     #once submit is pressed, try to encrypt file.
-
+    key_id = selection.split("(")[-1].strip(")")
+    print("Key ID: ", key_id)
     if st.button("Submit", key="file_encrypt_submit"):
-        result = ef(file_path,file_bytes)
+        result = ef(key_id)
         st.write(result)
 
 main()

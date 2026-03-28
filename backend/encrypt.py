@@ -10,14 +10,14 @@ def create_gpg():
         exit(1)
 
 
-def encrypt_file(file_path, public_key_path):
+def encrypt_file(key_id, file):
     try:
         print ("Starting file encryption process....")
-        print("public Key ", public_key_path)
+        #print("public Key ", public_key_path)
         gpg = create_gpg()
 
-        import_result = gpg.import_keys(public_key_path)
-        print("Import Result: ", import_result.fingerprints)
+        #import_result = gpg.import_keys(public_key_path)
+        #print("Import Result: ", import_result.fingerprints)
         if not import_result.fingerprints: 
             raise ValueError("No valid public keys were imported")
         result = gpg.encrypt_file(open(file_path, 'rb'), recipients=import_result.fingerprints,  output=file_path + '.gpg')
@@ -27,17 +27,13 @@ def encrypt_file(file_path, public_key_path):
     return result.status
 
 def key_options_default():
-    imported_keys = list_imported_keys()
+    gpg = create_gpg()
+    keys = gpg.list_keys()
     key_options = []
     if key_options == []:
         for key in imported_keys:
-            #print("Key: ", key)
+            print("Key: ", key)
             key_id = key['keyid']
             user = key['uids'][0]
             key_options.append(f"{user} ({key_id})")
     return key_options
-
-def list_imported_keys():
-    gpg = create_gpg()
-    keys = gpg.list_keys() 
-    return keys
