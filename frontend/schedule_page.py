@@ -1,3 +1,3 @@
 import streamlit as st
 
-'hello there'
+st.write("scheduling feature enhancement coming soon")
