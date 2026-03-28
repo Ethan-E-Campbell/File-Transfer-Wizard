@@ -18,7 +18,7 @@ def main():
     print("Key ID: ", key_id)
     #ask for file path or uploaded file
     
-    upload_or_path = st.selectbox("Please upload a file or enter a file path", ["", "Upload a file", "Enter a file path"])
+    upload_or_path = st.selectbox("Please upload a file or enter a file path", [ "Upload a file", "Enter a file path"])
     if upload_or_path == "Enter a file path":
         file_path = st.text_input("Please enter the file path of the file you would like to encrypt.") 
     elif upload_or_path == "Upload a file":
@@ -28,14 +28,15 @@ def main():
             file_name = uploaded_file.name
 
     output_file_name_with_ext = st.text_input("Please give a name for your encrypted file. Include extention (.ext) if expected output is not .PGP")
+    output_path = st.text_input("Please enter file path where you wannt encrypted file. If left blank, the file will be saved in an output folder.")
 
     if st.button("Submit", key="file_encrypt_submit"):
         if upload_or_path is None or upload_or_path == "":
             st.error("Please select a file input method before submitting.")
             return
-        result = encrypt_file(key_id, file_path if upload_or_path == "Enter a file path" else bytes_data, file_name, output_file_name_with_ext)
+        result, output_file_path = encrypt_file(key_id, file_path if upload_or_path == "Enter a file path" else bytes_data, file_name, output_file_name_with_ext, output_path)
         if result == "encryption ok":
-            st.success("Your file has been encrypted successfully! It has been saved to your downloads folder.")
+            st.success("Your file has been encrypted successfully! Here is the full file path:"+ output_file_path )
         else:
             st.error("An error occurred during encryption: " + str(result))
 

@@ -10,27 +10,23 @@ def create_gpg():
         exit(1)
 
 
-def encrypt_file(key_id, file_byte_data, file_name, output_file_name_with_ext):
+def encrypt_file(key_id, file_byte_data, file_name, output_file_name_with_ext, output_path = None):
     try:
         print ("Starting file encryption process....")
-        #print("public Key ", public_key_path)
         gpg = create_gpg()
-
-        #import_result = gpg.import_keys(public_key_path)
-        #print("Import Result: ", import_result.fingerprints)
-        #if not import_result.fingerprints: 
-        #    raise ValueError("No valid public keys were imported")
-        print(output_file_name_with_ext)
-        print(output_file_name_with_ext[-3:])
         if output_file_name_with_ext[-3:] != ".pgp" and output_file_name_with_ext.find(".") == -1:
-            print("No file extension provided, defaulting to .pgp")
             output_file_name_with_ext += ".pgp"
-        output = "C:\\Users\\Ethan\\Downloads\\" + output_file_name_with_ext
-        result = gpg.encrypt(file_byte_data, recipients=key_id,  output=output)
+        if output_path is None or output_path == "":
+            output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "output"))
+            if not os.path.exists(output_path):
+                os.makedirs(output_path)
+            
+        full_file_path = os.path.join(output_path, output_file_name_with_ext)
+        result = gpg.encrypt(file_byte_data, recipients=key_id,  output=full_file_path)
     except Exception as e:
         print("An error occurred during file encryption: ", e)
         return e
-    return result.status
+    return result.status, output_path
 
 def key_options_default():
     gpg = create_gpg()
@@ -38,7 +34,6 @@ def key_options_default():
     key_options = []
     if key_options == []:
         for key in keys:
-            print("Key: ", key)
             key_id = key['keyid']
             user = key['uids'][0]
             key_options.append(f"{user} ({key_id})")
