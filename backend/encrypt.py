@@ -18,9 +18,10 @@ def encrypt_file(key_id, file):
 
         #import_result = gpg.import_keys(public_key_path)
         #print("Import Result: ", import_result.fingerprints)
-        if not import_result.fingerprints: 
-            raise ValueError("No valid public keys were imported")
-        result = gpg.encrypt_file(open(file_path, 'rb'), recipients=import_result.fingerprints,  output=file_path + '.gpg')
+        #if not import_result.fingerprints: 
+        #    raise ValueError("No valid public keys were imported")
+        output = "C:\\Users\\Ethan\\Downloads\\output.gpg"
+        result = gpg.encrypt(file, recipients=key_id,  output=output)
     except Exception as e:
         print("An error occurred during file encryption: ", e)
         return e
@@ -31,7 +32,7 @@ def key_options_default():
     keys = gpg.list_keys()
     key_options = []
     if key_options == []:
-        for key in imported_keys:
+        for key in keys:
             print("Key: ", key)
             key_id = key['keyid']
             user = key['uids'][0]
