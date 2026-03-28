@@ -21,5 +21,7 @@ def main():
         result = ef(key_id)
         st.write(result)
 
+    footer.caption("Ethan Campbell, 2026")
+
 main()
 

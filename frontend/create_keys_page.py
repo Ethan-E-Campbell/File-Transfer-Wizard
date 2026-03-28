@@ -24,3 +24,5 @@ if pgp_or_ssh == "PGP":
             #st.write("Fingerprint: ", fingerprint)
             #st.write("Password: ", password)
             st.write("Your PGP key pair has been created successfully!")
+
+footer.caption("Ethan Campbell, 2026")
