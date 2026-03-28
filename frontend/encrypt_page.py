@@ -14,11 +14,17 @@ def list_keys_helper():
     return key_options()
 
 def main():
+    #Variable declaration
+    upload_or_path = None
+    file_path = None
+    uploaded_file = None
+    bytes_data = None
+    file_name = None
     # Main print statements
     st.title("Welcome to the encrypt page.")
     st.write("Please answer these questions to encrypt your file.")
     #ask what key to use
-    selection = st.selectbox("What key would you like to use for your PGP key pair?", list_keys_helper())
+    selection = st.selectbox("What key would you like to use for decryption?", list_keys_helper())
     key_id = selection.split("(")[-1].strip(")")
     #print("Key ID: ", key_id)
     #ask for file path or uploaded file
@@ -36,7 +42,7 @@ def main():
     output_path = st.text_input("Please enter file path where you wannt encrypted file. If left blank, the file will be saved in an output folder.")
 
     if st.button("Submit", key="file_encrypt_submit"):
-        if upload_or_path is None or upload_or_path == "":
+        if upload_or_path is None or upload_or_path == "" or (bytes_data is None and file_path is None):
             st.error("Please select a file input method before submitting.")
             return
         result, output_file_path = encrypt_file(key_id, file_path if upload_or_path == "Enter a file path" else bytes_data, file_name, output_file_name_with_ext, output_path)
