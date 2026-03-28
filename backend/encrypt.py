@@ -1,3 +1,10 @@
+"""
+Codeunit: encrypt.py
+Author: Ethan Campbell
+Date: 28-Mar-2026
+Description: Encrypts file using PGP.
+"""
+
 import gnupg
 import os
 def create_gpg():

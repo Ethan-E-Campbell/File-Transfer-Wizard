@@ -1,7 +1,13 @@
+"""
+Codeunit: main_page.py
+Author: Ethan Campbell
+Date: 28-Mar-2026
+Description: Landing page for FTW app
+"""
 import streamlit as st 
 
 
-st.title("Welcome to File Transfer Wizard!") 
+st.title("Welcome to File Transfer Wizard (FTW)!") 
 st.write("The file transfer wizard is a PGP encryption tool, with support for SFTP file transfers")
 st.write("Please note! You must have GPG installed on your machine to use this tool.")
 st.write("Please select a page from the sidebar to get started.")

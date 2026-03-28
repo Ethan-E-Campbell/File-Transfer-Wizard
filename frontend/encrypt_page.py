@@ -1,12 +1,17 @@
+"""
+Codeunit: encrypt_page.py
+Author: Ethan Campbell
+Date: 28-Mar-2026
+Description: Frontend page for file encryption.
+"""
+
 import streamlit as st
 from backend.encrypt import encrypt_file as encrypt_file
 from backend.encrypt import key_options_default as key_options
 
-
 @st.cache_data
 def list_keys_helper():
     return key_options()
-
 
 def main():
     # Main print statements
@@ -15,7 +20,7 @@ def main():
     #ask what key to use
     selection = st.selectbox("What key would you like to use for your PGP key pair?", list_keys_helper())
     key_id = selection.split("(")[-1].strip(")")
-    print("Key ID: ", key_id)
+    #print("Key ID: ", key_id)
     #ask for file path or uploaded file
     
     upload_or_path = st.selectbox("Please upload a file or enter a file path", [ "Upload a file", "Enter a file path"])

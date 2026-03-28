@@ -1,3 +1,10 @@
+"""
+Codeunit: create_keys.py
+Author: Ethan Campbell
+Date: 28-Mar-2026
+Description: Creates PGP and SSH key pairs for encryption.
+"""
+
 import gnupg
 import uuid
 import os

@@ -1,8 +1,13 @@
+"""
+Codeunit: main_page.py
+Author: Ethan Campbell
+Date: 28-Mar-2026
+Description: Frontend page for creating PGP and SSH key pairs.
+"""
+
 import streamlit as st
 from backend.create_keys import create_pgp_key_pair as cpgpkp
 from backend.create_keys import create_ssh_key_pair as csshkp
-
-
 
 st.write("welcome to the key creation page.")
 st.write("SSH enhancement coming soon")
@@ -24,7 +29,7 @@ if pgp_or_ssh == "PGP":
             #st.write("Fingerprint: ", fingerprint)
             #st.write("Password: ", password)
             st.write("Your PGP key pair has been created successfully!")
-            
+
 footer = st.container() 
 footer.divider() 
 footer.caption("Ethan Campbell, 2026")

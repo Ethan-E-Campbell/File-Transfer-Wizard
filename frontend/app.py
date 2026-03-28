@@ -1,3 +1,10 @@
+"""
+Codeunit: app.py
+Author: Ethan Campbell
+Date: 28-Mar-2026
+Description: Starts the app. Always call this first "python3 -m streamlit run frontend/app.py"
+"""
+
 import streamlit as st
 
 home = st.Page("main_page.py", title="Home", icon="🏠")
