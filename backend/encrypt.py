@@ -20,7 +20,10 @@ def encrypt_file(key_id, file_byte_data, file_name, output_file_name_with_ext):
         #print("Import Result: ", import_result.fingerprints)
         #if not import_result.fingerprints: 
         #    raise ValueError("No valid public keys were imported")
-        if output_file_name.split(".")[-1].lower() is None:
+        print(output_file_name_with_ext)
+        print(output_file_name_with_ext[-3:])
+        if output_file_name_with_ext[-3:] != ".pgp" and output_file_name_with_ext.find(".") == -1:
+            print("No file extension provided, defaulting to .pgp")
             output_file_name_with_ext += ".pgp"
         output = "C:\\Users\\Ethan\\Downloads\\" + output_file_name_with_ext
         result = gpg.encrypt(file_byte_data, recipients=key_id,  output=output)
