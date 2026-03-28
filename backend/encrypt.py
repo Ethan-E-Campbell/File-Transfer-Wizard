@@ -10,7 +10,7 @@ def create_gpg():
         exit(1)
 
 
-def encrypt_file(key_id, file_byte_data, fil_name):
+def encrypt_file(key_id, file_byte_data, file_name):
     try:
         print ("Starting file encryption process....")
         #print("public Key ", public_key_path)
