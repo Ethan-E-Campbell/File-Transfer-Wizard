@@ -27,7 +27,7 @@ elif upload_or_path == "Upload a file":
 selection = st.selectbox("What key would you like to use for decryption?", list_keys_helper())
 key_id = selection.split("(")[-1].strip(")")
 if st.button("Decrypt a file", key="file_encrypt_submit"):
-    decrypt_file(file_path if upload_or_path == "Enter a file path" else bytes_data)
+    decrypt_file(file_path if upload_or_path == "Enter a file path" else bytes_data, key_id)
 
 footer = st.container() 
 footer.divider() 
