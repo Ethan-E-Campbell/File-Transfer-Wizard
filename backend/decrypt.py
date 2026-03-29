@@ -11,7 +11,7 @@ import gnupg
 def create_gpg():
     try:
         print("Initializing GPG...")
-        gpg = gnupg.GPG(verbose = True, options = ['--verbose', '--batch', '--yes', '--pinentry-mode', 'loopback'])
+        gpg = gnupg.GPG(verbose = False, options = ['--verbose', '--batch', '--yes', '--pinentry-mode', 'loopback'])
         return gpg
     except Exception as e:
         print("An error occurred while initializing GPG: ", e)
@@ -22,14 +22,16 @@ def load_passphrase(fingerprint):
 
 def decrypt_file(file_data, fingerprint):
 
-    print ("file decryption will happen here")
+    #print ("file decryption will happen here")
+    print(file_data)
     gpg = create_gpg()
-    print(fingerprint)
+    #print(fingerprint)
     passphrase = load_passphrase(fingerprint)
-    print("Loaded passphrase: ", passphrase)
-    decrypted_data = gpg.decrypt(file_data, passphrase=passphrase)
-    print("Decryption status: ", decrypted_data.status)
-    print("Decrypted data: ", decrypted_data.data)
+    #print("Loaded passphrase: ", passphrase)
+    decrypted_data = gpg.decrypt(file_data, passphrase=passphrase,output = 'C:\\Users\\Ethan\\Downloads\\decrypted.txt')
+    #print("Decryption status: ", decrypted_data.status)
+    #print("Decrypted data: ", decrypted_data.data)
+    return decrypted_data.status, 'C:\\Users\\Ethan\\Downloads\\decrypted.txt'
 
 def key_options_default():
     gpg = create_gpg()
