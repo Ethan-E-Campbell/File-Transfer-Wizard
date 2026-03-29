@@ -14,7 +14,6 @@ def create_gpg():
         return gpg
     except Exception as e:
         print("An error occurred while initializing GPG: ", e)
-        exit(1)
 
 
 def encrypt_file(key_id, file_byte_data, file_name, output_file_name_with_ext, output_path = None):

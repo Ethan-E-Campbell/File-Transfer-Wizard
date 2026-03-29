@@ -14,7 +14,6 @@ def create_gpg():
         return gpg
     except Exception as e:
         print("An error occurred while initializing GPG: ", e)
-        exit(1)
 
 def load_passphrase(fingerprint):
     return keyring.get_password("gpg-passphrases", fingerprint)
