@@ -4,8 +4,7 @@ Author: Ethan Campbell
 Date: 28-Mar-2026
 Description: Decrypts PGP encryptted files.
 """
-import keyring
-
+import os
 import keyring
 import gnupg
 def create_gpg():
@@ -20,18 +19,21 @@ def create_gpg():
 def load_passphrase(fingerprint):
     return keyring.get_password("gpg-passphrases", fingerprint)
 
-def decrypt_file(file_data, fingerprint):
+def decrypt_file(file_data, fingerprint, output_file_name_with_ext, output_path = None):
 
-    #print ("file decryption will happen here")
-    print(file_data)
+
     gpg = create_gpg()
-    #print(fingerprint)
+
+    if output_path is None or output_path == "":
+        output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "output"))
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+    full_file_path = os.path.join(output_path, output_file_name_with_ext)
     passphrase = load_passphrase(fingerprint)
-    #print("Loaded passphrase: ", passphrase)
-    decrypted_data = gpg.decrypt(file_data, passphrase=passphrase,output = 'C:\\Users\\Ethan\\Downloads\\decrypted.txt')
-    #print("Decryption status: ", decrypted_data.status)
-    #print("Decrypted data: ", decrypted_data.data)
-    return decrypted_data.status, 'C:\\Users\\Ethan\\Downloads\\decrypted.txt'
+    decrypted_data = gpg.decrypt(file_data, passphrase=passphrase,output = full_file_path)
+
+
+    return decrypted_data.status, full_file_path
 
 def key_options_default():
     gpg = create_gpg()
