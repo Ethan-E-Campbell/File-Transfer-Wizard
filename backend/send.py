@@ -4,8 +4,9 @@ Author: Ethan Campbell
 Date: 28-Mar-2026
 Description: Dends files using SFTP.
 """
-
 import gnupg
+
+
 def create_gpg():
     try:
         print("Initializing GPG...")
@@ -17,4 +18,4 @@ def create_gpg():
 
 
 def send_file(file_path):
-    print ("send file will happen here")
+    print("send file will happen here")
