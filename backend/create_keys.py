@@ -41,9 +41,7 @@ def create_pgp_key_pair(key_type, key_length, name_email, name_real):
                                    name_real=name_real)
     key = gpg.gen_key(input_data)
     store_passphrase(key.fingerprint, password)
-    # print("Generated key: ", key)
-    # print("Password: ", password)
-    return key.fingerprint, password
+    return key.fingerprint
 
 
 def create_ssh_key_pair(file_path):
