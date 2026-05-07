@@ -5,7 +5,7 @@ Date: 28-Mar-2026
 Description: Dends files using SFTP.
 """
 import gnupg
-
+import paramiko
 
 def create_gpg():
     try:
