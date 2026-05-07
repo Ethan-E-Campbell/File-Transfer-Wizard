@@ -45,13 +45,12 @@ def create_pgp_key_pair(key_type, key_length, name_email, name_real):
     return key.fingerprint
 
 
-def create_ssh_key_pair():
+def create_ssh_key_pair(ssh_key_name):
     print("creating SSH key pair...")
-    key = paramiko.RSAKey.generate(2048)
     key = paramiko.RSAKey.generate(4096)
-    key.write_private_key_file("id_rsa")
+    key.write_private_key_file(ssh_key_name)
 
     # Write public key
-    with open("id_rsa.pub", "w") as f:
+    with open(ssh_key_name + ".pub", "w") as f:
         f.write(f"{key.get_name()} {key.get_base64()}"
                 )

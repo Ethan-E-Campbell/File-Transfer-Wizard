@@ -40,10 +40,15 @@ if pgp_or_ssh == "PGP":
             st.write("Your PGP key pair has been created successfully!")
 
 if pgp_or_ssh == "SSH":
-    st.write("SSH key pair being created")
+
+    st.write("You have selected to create a SSH key pair.")
+    ssh_key_name = st.text_input("What do you wish for the SSH " +
+                               "Key Pair file names to be?")
+
     if st.button("Submit", key="ssh_key_submit"):
-        csshkp()
+        csshkp(ssh_key_name)
         st.write("Your SSH key pair has been created successfully!")
+
 footer = st.container()
 footer.divider()
 footer.caption("Ethan Campbell, 2026")
