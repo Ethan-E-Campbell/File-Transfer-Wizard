@@ -10,7 +10,6 @@ from backend.create_keys import create_pgp_key_pair as cpgpkp
 from backend.create_keys import create_ssh_key_pair as csshkp
 
 st.write("welcome to the key creation page.")
-st.write("SSH enhancement coming soon")
 pgp_or_ssh = st.selectbox("Are you creating a PGP or SSH key pair?",
                           ["PGP", "SSH"])
 
