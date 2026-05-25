@@ -7,17 +7,19 @@ Description: Dends files using SFTP.
 import paramiko
 
 
-def sftp_client_setup(hostname, port, username, password, file_path, remote_path):
+def sftp_client_setup(hostname, port, username, password):
     try:
         print("Setting up SFTP client...")
         transport = paramiko.client.SSHClient()
         transport.set_missing_host_key_policy(paramiko.client.AutoAddPolicy())
-        transport.connect(hostname=hostname, port=port,
-                          username=username, password=password)
+        transport.connect(hostname='127.0.0.1', port=port,
+                          username='ec', password='ec')
     except Exception as e:
         print("An error occurred while connecting to the SFTP server: ", e)
         return
 
+
 def send_file(file_name, file_path, hostname):
     print("send file will happen here")
-    sftp_client_setup(hostname, 22, "username", "password", file_path, "remote_path")
+    sftp_client_setup(hostname, 22, "username",
+                      "password")
