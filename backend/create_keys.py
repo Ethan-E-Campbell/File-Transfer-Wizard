@@ -8,6 +8,7 @@ Description: Creates PGP and SSH key pairs for encryption.
 import gnupg
 import uuid
 import keyring
+import paramiko
 
 
 def create_uuid():
@@ -44,5 +45,12 @@ def create_pgp_key_pair(key_type, key_length, name_email, name_real):
     return key.fingerprint
 
 
-def create_ssh_key_pair(file_path):
-    print("file encryption will happen here")
+def create_ssh_key_pair(ssh_key_name):
+    print("creating SSH key pair...")
+    key = paramiko.RSAKey.generate(4096)
+    key.write_private_key_file(ssh_key_name)
+
+    # Write public key
+    with open(ssh_key_name + ".pub", "w") as f:
+        f.write(f"{key.get_name()} {key.get_base64()}"
+                )

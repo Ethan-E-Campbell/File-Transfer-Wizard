@@ -7,10 +7,9 @@ Description: Frontend page for creating PGP and SSH key pairs.
 
 import streamlit as st
 from backend.create_keys import create_pgp_key_pair as cpgpkp
-# from backend.create_keys import create_ssh_key_pair as csshkp
+from backend.create_keys import create_ssh_key_pair as csshkp
 
 st.write("welcome to the key creation page.")
-st.write("SSH enhancement coming soon")
 pgp_or_ssh = st.selectbox("Are you creating a PGP or SSH key pair?",
                           ["PGP", "SSH"])
 
@@ -38,6 +37,16 @@ if pgp_or_ssh == "PGP":
                                  name_email,
                                  name_real)
             st.write("Your PGP key pair has been created successfully!")
+
+if pgp_or_ssh == "SSH":
+
+    st.write("You have selected to create a SSH key pair.")
+    ssh_key_name = st.text_input("What do you wish for the SSH " +
+                               "Key Pair file names to be?")
+
+    if st.button("Submit", key="ssh_key_submit"):
+        csshkp(ssh_key_name)
+        st.write("Your SSH key pair has been created successfully!")
 
 footer = st.container()
 footer.divider()

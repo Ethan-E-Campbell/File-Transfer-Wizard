@@ -4,18 +4,34 @@ Author: Ethan Campbell
 Date: 28-Mar-2026
 Description: Dends files using SFTP.
 """
-import gnupg
+import paramiko
 
 
-def create_gpg():
+def sftp_client_setup(hostname, port, username, password):
     try:
-        print("Initializing GPG...")
-        gpg = gnupg.GPG()
-        return gpg
+        print("Setting up SFTP client...")
+        transport = paramiko.client.SSHClient()
+        # This should be fixed later...to ask if the user trusts the key. 
+        # Or to use some kind of host key management system.
+        transport.set_missing_host_key_policy(paramiko.client.AutoAddPolicy())
+        transport.connect(hostname=hostname, port=port,
+                          username=username, password=password)
+        return transport.open_sftp()
     except Exception as e:
-        print("An error occurred while initializing GPG: ", e)
-        exit(1)
+        print("An error occurred while connecting to the SFTP server: ", e)
+        return e
 
 
-def send_file(file_path):
-    print("send file will happen here")
+def send_file(file_name_and_path, file_send_path, hostname,
+              port, username, password):
+    try:
+        sftp = sftp_client_setup(hostname, port, username, password)
+        if isinstance(sftp, Exception):
+            return sftp
+
+        sftp.put(file_name_and_path, file_send_path)
+        sftp.close()
+        return None
+    except Exception as e:
+        print("An error occurred while sending the file: ", e)
+        return e
