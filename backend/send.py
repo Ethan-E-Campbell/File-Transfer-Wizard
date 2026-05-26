@@ -20,17 +20,17 @@ def sftp_client_setup(hostname, port, username, password):
         return
 
 
-def send_file(file_name, file_path, hostname):
+def send_file(file_name_and_path, file_send_path, hostname, port):
     print("send file will happen here")
-    sftp = sftp_client_setup('127.0.0.1', 22, "ec",
+    sftp = sftp_client_setup(hostname, port, "ec",
                              "ec")
     if sftp:
         try:
             print("Sending file...")
-            print(f"File name: {file_name}")
-            print(f"File path: {file_path}")
-            #sftp.mkdir('/upload')
-            sftp.put(file_name, '/upload/wakanda.jpg')
+            print(f"File name: {file_name_and_path}")
+            print(f"File path: {file_send_path}")
+            # sftp.mkdir('/upload')
+            sftp.put(file_name_and_path, file_send_path)
             print("File sent successfully!")
         except Exception as e:
             print("An error occurred while sending the file: ", e)

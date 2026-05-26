@@ -13,12 +13,13 @@ footer = st.container()
 footer.divider()
 footer.caption("Ethan Campbell, 2026")
 
-file_name = st.text_input("What file do you wish to send?")
-file_path = st.text_input("What is the file path of the file " +
-                          "you wish to send?")
+file_name_and_path = st.text_input("Input full file path of the file you wish to send.")
+file_send_path = st.text_input("Input the full file path you wish to send the file to on the SFTP server. ")
 hostname = st.text_input("What is the hostname of the SFTP server " +
                          "you wish to send to?")
+port = st.text_input("What is the port number of the SFTP server " +
+                      "you wish to send to? (default is 22)")
 
 if st.button("Submit", key="file_send_submit"):
-    send_file(file_name, file_path, hostname)
+    send_file(file_name_and_path, file_send_path, hostname, port)
     st.write("Your file has been sent successfully!")
