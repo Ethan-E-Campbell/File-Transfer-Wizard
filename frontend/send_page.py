@@ -21,9 +21,14 @@ hostname = st.text_input("What is the hostname of the SFTP server " +
                          "you wish to send to?", value="127.0.0.1")
 port = st.text_input("What is the port number of the SFTP server " +
                      "you wish to send to? (default is 22)", value="22")
+username = st.text_input("What is the username for the SFTP server " +
+                         "you wish to send to?")
+password = st.text_input("What is the password for the SFTP server " +
+                         "you wish to send to?", type="password")
 
 if st.button("Submit", key="file_send_submit"):
-    result = send_file(file_name_and_path, file_send_path, hostname, port)
+    result = send_file(file_name_and_path, file_send_path,
+                       hostname, port, username, password)
     print(result)
     if not result:
         st.write("Your file has been sent successfully!")

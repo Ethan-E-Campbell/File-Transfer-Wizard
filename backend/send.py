@@ -22,10 +22,10 @@ def sftp_client_setup(hostname, port, username, password):
         return e
 
 
-def send_file(file_name_and_path, file_send_path, hostname, port):
+def send_file(file_name_and_path, file_send_path, hostname,
+              port, username, password):
     try:
-        sftp = sftp_client_setup(hostname, port, "ec",
-                                 "ec")
+        sftp = sftp_client_setup(hostname, port, username, password)
         if isinstance(sftp, Exception):
             return sftp
 
