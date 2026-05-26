@@ -29,12 +29,7 @@ def send_file(file_name_and_path, file_send_path, hostname,
         if isinstance(sftp, Exception):
             return sftp
 
-        # print("Sending file...")
-        # print(f"File name: {file_name_and_path}")
-        # print(f"File path: {file_send_path}")
-        # sftp.mkdir('/upload')
         sftp.put(file_name_and_path, file_send_path)
-        print("File sent successfully!")
         sftp.close()
         return None
     except Exception as e:

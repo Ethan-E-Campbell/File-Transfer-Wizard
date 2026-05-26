@@ -29,8 +29,8 @@ password = st.text_input("What is the password for the SFTP server " +
 if st.button("Submit", key="file_send_submit"):
     result = send_file(file_name_and_path, file_send_path,
                        hostname, port, username, password)
-    print(result)
     if not result:
-        st.write("Your file has been sent successfully!")
+        st.write("Your file has been uploaded to the " +
+                 "remote server successfully!")
     else:
-        st.write("An error occurred while sending the file.", result)
+        st.write("An error occurred while uploading the file.", result)
