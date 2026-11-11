@@ -7,11 +7,6 @@ Description: Frontend page for sending files using SFTP.
 
 import streamlit as st
 from backend.send import send_file as send_file
-st.write("SFTP send feature enhancement coming soon")
-
-footer = st.container()
-footer.divider()
-footer.caption("Ethan Campbell, 2026")
 
 file_name_and_path = st.text_input("Input full file path of the file " +
                                    "you wish to send.")
@@ -34,3 +29,7 @@ if st.button("Submit", key="file_send_submit"):
                  "remote server successfully!")
     else:
         st.write("An error occurred while uploading the file.", result)
+
+footer = st.container()
+footer.divider()
+footer.caption("Ethan Campbell, 2026")
