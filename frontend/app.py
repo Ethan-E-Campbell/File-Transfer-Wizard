@@ -12,21 +12,30 @@ from pathlib import Path
 import streamlit as st
 
 workspace_root = Path(__file__).resolve().parent.parent
-if str(workspace_root) not in sys.path:
-    sys.path.insert(0, str(workspace_root))
+frontend_dir = Path(__file__).resolve().parent
 
-home = st.Page("main_page.py", title="Home", icon="🏠")
-encrypt_page = st.Page("encrypt_page.py",
+for candidate in (workspace_root, frontend_dir):
+    candidate_str = str(candidate)
+    if candidate_str not in sys.path:
+        sys.path.insert(0, candidate_str)
+
+
+def page_path(filename: str) -> str:
+    return str((frontend_dir / filename).resolve())
+
+
+home = st.Page(page_path("main_page.py"), title="Home", icon="🏠")
+encrypt_page = st.Page(page_path("encrypt_page.py"),
                        title="Encrypt a file", icon="🔐")
-decrypt_page = st.Page("decrypt_page.py",
+decrypt_page = st.Page(page_path("decrypt_page.py"),
                        title="Decrypt a file", icon="🔓")
-send_page = st.Page("send_page.py",
+send_page = st.Page(page_path("send_page.py"),
                     title="Send file", icon="📤")
-create_keys_page = st.Page("create_keys_page.py",
+create_keys_page = st.Page(page_path("create_keys_page.py"),
                            title="Create PGP or SSH key pair", icon="🗝️")
-schedule_page = st.Page("schedule_page.py",
+schedule_page = st.Page(page_path("schedule_page.py"),
                         title="Schedule a transfer", icon="📅")
-import_keys = st.Page("import_keys.py",
+import_keys = st.Page(page_path("import_keys.py"),
                       title="Import PGP keys", icon="📥")
 
 pg = st.navigation([

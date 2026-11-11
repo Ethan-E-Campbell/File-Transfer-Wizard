@@ -1,0 +1,19 @@
+python -m PyInstaller `
+  --onefile `
+  --noconfirm `
+  --paths . `
+  --collect-all streamlit `
+  --copy-metadata streamlit `
+  --hidden-import streamlit `
+  --hidden-import streamlit.runtime `
+  --hidden-import streamlit.runtime.scriptrunner `
+  --hidden-import streamlit.runtime.scriptrunner.magic_funcs `
+  --hidden-import streamlit.runtime.scriptrunner.script_runner `
+  --hidden-import streamlit.runtime.scriptrunner.utils `
+  --hidden-import streamlit.web `
+  --hidden-import paramiko `
+  --hidden-import gnupg `
+  --hidden-import keyring `
+  --add-data "frontend;frontend" `
+  --add-data "backend;backend" `
+  run_app.py

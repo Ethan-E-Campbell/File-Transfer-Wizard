@@ -3,3 +3,10 @@ keys/
 backend/__pycache__/
 
 output/
+
+build/
+dist/
+frontend/__pycache__/
+app.spec
+run_app.spec
+__pycache__/
