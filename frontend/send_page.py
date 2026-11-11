@@ -13,7 +13,7 @@ footer = st.container()
 footer.divider()
 footer.caption("Ethan Campbell, 2026")
 
-file_name_and_path = st.text_input("Input full file path of the file" +
+file_name_and_path = st.text_input("Input full file path of the file " +
                                    "you wish to send.")
 file_send_path = st.text_input("Input the full file path you wish to " +
                                "send the file to on the SFTP server. ")

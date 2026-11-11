@@ -6,7 +6,14 @@ Description: Starts the app.
             Always call first: "python3 -m streamlit run frontend/app.py"
 """
 
+import sys
+from pathlib import Path
+
 import streamlit as st
+
+workspace_root = Path(__file__).resolve().parent.parent
+if str(workspace_root) not in sys.path:
+    sys.path.insert(0, str(workspace_root))
 
 home = st.Page("main_page.py", title="Home", icon="🏠")
 encrypt_page = st.Page("encrypt_page.py",
