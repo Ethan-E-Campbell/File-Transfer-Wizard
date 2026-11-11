@@ -40,7 +40,7 @@ output_path = st.text_input("Please enter file path where you want " +
                             " If left blank, the file will be saved " +
                             "in an output folder.")
 
-if st.button("Decrypt a file", key="file_encrypt_submit"):
+if st.button("Decrypt file", key="file_decrypt_submit"):
     result, output_file_path = decrypt_file(file_path if upload_or_path ==
                                             "Enter a file path" else
                                             bytes_data,
@@ -53,7 +53,7 @@ if st.button("Decrypt a file", key="file_encrypt_submit"):
                    "Here is the full file path:"
                    + output_file_path)
     else:
-        st.error("An error occurred during encryption: " + str(result))
+        st.error("An error occurred during decryption: " + str(result))
 
 
 footer = st.container()

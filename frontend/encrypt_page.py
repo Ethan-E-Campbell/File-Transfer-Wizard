@@ -51,7 +51,7 @@ def main():
                                 "encrypted file. If left blank, the file " +
                                 "will be saved in an output folder.")
 
-    if st.button("Submit", key="file_encrypt_submit"):
+    if st.button("Encrypt file", key="file_encrypt_submit"):
         if (upload_or_path is None
             or upload_or_path == "") or (bytes_data is None
                                          and file_path is None):

@@ -21,7 +21,7 @@ username = st.text_input("What is the username for the SFTP server " +
 password = st.text_input("What is the password for the SFTP server " +
                          "you wish to send to?", type="password")
 
-if st.button("Submit", key="file_send_submit"):
+if st.button("Send file", key="file_send_submit"):
     result = send_file(file_name_and_path, file_send_path,
                        hostname, port, username, password)
     if not result:
