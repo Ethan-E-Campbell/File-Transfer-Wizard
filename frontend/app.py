@@ -3,7 +3,7 @@ Codeunit: app.py
 Author: Ethan Campbell
 Date: 28-Mar-2026
 Description: Starts the app.
-            Always call first: "python3 -m streamlit run frontend/app.py"
+Always call first: "python3 -m streamlit run frontend/app.py"
 """
 
 import sys
