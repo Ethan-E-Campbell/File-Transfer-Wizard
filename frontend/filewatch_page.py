@@ -9,6 +9,7 @@ Monitor for files and encrypt / send them automatically
 import streamlit as st
 from backend.sqlite_db import initiate_database as initiate_database
 conn = initiate_database()
+print(conn)
 st.write("Welcome to the file watch page!")
 
 st.write("Please provide the following information.")
