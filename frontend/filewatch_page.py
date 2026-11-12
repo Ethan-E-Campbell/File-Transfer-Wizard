@@ -7,7 +7,7 @@ Monitor for files and encrypt / send them automatically
 """
 
 import streamlit as st
-from backend.sqlite_db import initiate_database as initiate_database
+from backend.filewatch_db import initiate_database as initiate_database
 conn = initiate_database()
 print(conn)
 st.write("Welcome to the file watch page!")
@@ -20,8 +20,3 @@ if pgp_or_not == "Yes":
     pgp_key_selected = st.text_input("Please provide the PGP key you would like to use for encryption.")
 
 cron_expression = st.text_input("Please provide the cron expression for the file monitoring schedule.")
-
-
-footer = st.container()
-footer.divider()
-footer.caption("Ethan Campbell, 2026")

@@ -33,21 +33,26 @@ send_page = st.Page(page_path("send_page.py"),
                     title="Send file", icon="📤")
 create_keys_page = st.Page(page_path("create_keys_page.py"),
                            title="Create PGP or SSH key pair", icon="🗝️")
-schedule_page = st.Page(page_path("schedule_page.py"),
+schedule_send_page = st.Page(page_path("schedule_send_page.py"),
                         title="Schedule a transfer", icon="📅")
 filewatch_page = st.Page(page_path("filewatch_page.py"),
                          title="Watch for files", icon="👀")
 import_keys = st.Page(page_path("import_keys.py"),
                       title="Import PGP keys", icon="📥")
-
+schedule_send_report = st.Page(page_path("schedule_send_report.py"),
+                               title="View Scheduled Transfers", icon="📋")
+filewatch_report = st.Page(page_path("filewatch_report.py"),
+                           title="View Filewatch Reports", icon="📋")
 pg = st.navigation([
     home,
     create_keys_page,
     encrypt_page,
     decrypt_page,
     send_page,
-    schedule_page,
+    schedule_send_page,
+    schedule_send_report,
     filewatch_page,
+    filewatch_report,
     import_keys
 ])
 
