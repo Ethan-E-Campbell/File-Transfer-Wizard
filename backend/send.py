@@ -11,7 +11,7 @@ def sftp_client_setup(hostname, port, username, password):
     try:
         print("Setting up SFTP client...")
         transport = paramiko.client.SSHClient()
-        # This should be fixed later...to ask if the user trusts the key. 
+        # This should be fixed later...to ask if the user trusts the key.
         # Or to use some kind of host key management system.
         transport.set_missing_host_key_policy(paramiko.client.AutoAddPolicy())
         transport.connect(hostname=hostname, port=port,
