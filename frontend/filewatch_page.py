@@ -15,9 +15,6 @@ from backend.filewatch_db import create_table as create_table
 
 st.write("Welcome to the file watch page!")
 create_table()
-insert_file_watch_data("test_path", "test_key", "test_cron")
-file_watch_data = retrieve_file_watch_data()
-print(file_watch_data)
 
 st.write("Please provide the following information.")
 
@@ -27,3 +24,11 @@ if pgp_or_not == "Yes":
     pgp_key_selected = st.text_input("Please provide the PGP key you would like to use for encryption.")
 
 cron_expression = st.text_input("Please provide the cron expression for the file monitoring schedule.")
+
+if st.button("Add Schedule", key="add_schedule_submit"):
+    result = insert_file_watch_data(file_path, pgp_key_selected if pgp_or_not == "Yes" else None, cron_expression)
+    print("Insertion result: ", result, retrieve_file_watch_data())
+    if result == "insertion ok":
+        st.success("Your expected file watch data has been saved!")
+    else:
+        st.error("An error occurred during insertion of file watch data: " + str(result))

@@ -38,6 +38,10 @@ def insert_file_watch_data(file_path, pgp_key, cron_expression):
     ''', (file_path, pgp_key, cron_expression))
     conn.commit()
     conn.close()
+    if cursor.rowcount > 0:
+        return "insertion ok"
+    else:
+        return "insertion failed"
 
 
 def retrieve_file_watch_data():
