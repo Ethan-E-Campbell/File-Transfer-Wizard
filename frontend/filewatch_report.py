@@ -6,10 +6,10 @@ Description: Query Sqlite database to deliver report on currently set up filewat
 """
 
 import streamlit as st
+from backend.filewatch_db import retrieve_file_watch_data as retrieve_file_watch_data
 
 
-
-
+print(retrieve_file_watch_data())
 
 footer = st.container()
 footer.divider()

@@ -7,8 +7,6 @@ Monitor for files and encrypt / send them automatically
 """
 
 import streamlit as st
-# from backend.filewatch_db import initiate_database as initiate_database
-from backend.filewatch_db import retrieve_file_watch_data as retrieve_file_watch_data
 from backend.filewatch_db import insert_file_watch_data as insert_file_watch_data
 from backend.filewatch_db import create_table as create_table
 
