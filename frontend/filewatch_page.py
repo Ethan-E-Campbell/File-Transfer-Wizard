@@ -7,10 +7,17 @@ Monitor for files and encrypt / send them automatically
 """
 
 import streamlit as st
-from backend.filewatch_db import initiate_database as initiate_database
-conn = initiate_database()
-print(conn)
+# from backend.filewatch_db import initiate_database as initiate_database
+from backend.filewatch_db import retrieve_file_watch_data as retrieve_file_watch_data
+from backend.filewatch_db import insert_file_watch_data as insert_file_watch_data
+from backend.filewatch_db import create_table as create_table
+
+
 st.write("Welcome to the file watch page!")
+create_table()
+insert_file_watch_data("test_path", "test_key", "test_cron")
+file_watch_data = retrieve_file_watch_data()
+print(file_watch_data)
 
 st.write("Please provide the following information.")
 

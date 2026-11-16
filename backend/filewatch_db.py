@@ -14,13 +14,6 @@ database_path = os.path.join(database_dir, 'filewatch.db')
 os.makedirs(database_dir, exist_ok=True)
 
 
-def initiate_database():
-    conn = sqlite3.connect(database_path)
-    cursor = conn.cursor()
-    cursor.execute('''SELECT 1 + 1;''')
-    selection = cursor.fetchall()
-    return selection
-
 def create_table():
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
@@ -35,6 +28,7 @@ def create_table():
     conn.commit()
     conn.close()
 
+
 def insert_file_watch_data(file_path, pgp_key, cron_expression):
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
@@ -44,6 +38,7 @@ def insert_file_watch_data(file_path, pgp_key, cron_expression):
     ''', (file_path, pgp_key, cron_expression))
     conn.commit()
     conn.close()
+
 
 def retrieve_file_watch_data():
     conn = sqlite3.connect(database_path)
