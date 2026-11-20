@@ -25,7 +25,7 @@ cron_expression = st.text_input("Please provide the cron expression for the file
 
 if st.button("Add Schedule", key="add_schedule_submit"):
     result = insert_file_watch_data(file_path, pgp_key_selected if pgp_or_not == "Yes" else None, cron_expression)
-    print("Insertion result: ", result, retrieve_file_watch_data())
+    print("Insertion result: ", result)
     if result == "insertion ok":
         st.success("Your expected file watch data has been saved!")
     else:
